@@ -35,20 +35,20 @@ class _StartScreenState extends State<StartScreen> {
 
   Widget _indicators() {
     return IntrinsicHeight(
-      child:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _percentage(),
-            const SizedBox(
-              width: 10,
-            ),
-            _smallDivider(),
-            const SizedBox(
-              width: 10,
-            ),
-            _hydration(),
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _percentage(),
+          const SizedBox(
+            width: 10,
+          ),
+          _smallDivider(),
+          const SizedBox(
+            width: 10,
+          ),
+          _hydration(),
+        ],
+      ),
     );
   }
 
@@ -57,25 +57,22 @@ class _StartScreenState extends State<StartScreen> {
       children: [
         SizedBox(
           height: 60,
-          child: Stack(
-            alignment: Alignment.center,
-              children: [
-               const SizedBox(
-                height: 45,
-                width: 45,
-                 child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 62, 139, 236),
-                  backgroundColor: Color.fromARGB(255, 17, 50, 74),
-                  strokeWidth: 6,
-                  value: 0.3,
-                             ),
-               ),
-              Text(
-                '0 %',
-                style: Theme.of(context).textTheme.bodySmall,
+          child: Stack(alignment: Alignment.center, children: [
+            const SizedBox(
+              height: 45,
+              width: 45,
+              child: CircularProgressIndicator(
+                color: Color.fromARGB(255, 62, 139, 236),
+                backgroundColor: Color.fromARGB(255, 17, 50, 74),
+                strokeWidth: 6,
+                value: 0.3,
               ),
-            ]
-          ),
+            ),
+            Text(
+              '0 %',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ]),
         ),
         Text(
           'Hoy',
@@ -96,7 +93,15 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   Widget _hydration() {
-    return Text('1.0', style: Theme.of(context).textTheme.headlineSmall);
+    return Column(
+      children: [
+        _intervalBar(),
+        Text(
+          'Hidratación',
+          style: Theme.of(context).textTheme.bodySmall,
+        )
+      ],
+    );
   }
 
   Center _buttonReg() {
