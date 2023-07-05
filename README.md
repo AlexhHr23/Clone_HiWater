@@ -1,3 +1,2 @@
-# Clone_HiWater
+# Clon de Hi Water para fines educativo
 
-# Clon de Hi Water para efectos educativo
