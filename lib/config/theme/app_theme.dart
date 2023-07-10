@@ -19,6 +19,9 @@ class AppTheme {
   ThemeData theme() {
     return ThemeData(
         scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          color: Colors.black
+        ),
         textTheme: const TextTheme(
           headlineSmall: TextStyle(
             color: Colors.white,
@@ -40,9 +43,6 @@ class AppTheme {
           ),
         ),
         useMaterial3: true, 
-        appBarTheme: AppBarTheme(
-          backgroundColor: _colorThemes[selectedColor]
-        ),
         colorSchemeSeed: _colorThemes[selectedColor],
         //brightness: Brightness.dark
     );

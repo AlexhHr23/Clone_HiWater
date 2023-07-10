@@ -12,6 +12,15 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 10.0,
+        centerTitle: false,
+        leadingWidth: 0,
+        title: Text(
+          'HI WATER',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [_totalMl(), _indicators(), _buttonReg()],
@@ -70,7 +79,7 @@ class _StartScreenState extends State<StartScreen> {
               ),
             ),
             Text(
-              '0 %',
+              '100 %',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ]),
@@ -115,6 +124,16 @@ class _StartScreenState extends State<StartScreen> {
 
   Center _buttonReg() {
     return Center(
-        child: ElevatedButton(onPressed: () {}, child: const Text('Registar')));
+      child: ConstrainedBox(
+        constraints: const BoxConstraints.tightFor(
+          width: 120,
+          height: 30,
+        ),
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text('Registrar'),
+        )
+      ),
+    );
   }
 }
