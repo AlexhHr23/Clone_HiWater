@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:water_counter_app/assets/interval_progress_bar.dart';
 
 class StartScreen extends StatefulWidget {
-  const StartScreen({super.key});
+  const StartScreen({super.key,});
 
   @override
   State<StartScreen> createState() => _StartScreenState();
@@ -13,27 +14,53 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 10.0,
-        centerTitle: false,
-        leadingWidth: 0,
-        title: Text(
+        toolbarHeight: 16.0,
+        leadingWidth: 100,
+        leading: Text(
           'HI WATER',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
+        actions: [_hour()],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [_totalMl(), _indicators(), _buttonReg()],
+      body: SizedBox(
+        height: 190,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _totalMl(),
+            _verticalGap(),
+           _indicators(), 
+           _verticalGap(),
+           _buttonReg()
+           ],
+        ),
       ),
     );
   }
 
+  Widget _hour() {
+    String formattedTime = DateFormat.Hm().format(DateTime.now());
+    return Text(
+      formattedTime,
+      style: Theme.of(context).textTheme.bodySmall,
+    );
+  }
+
+   Widget _verticalGap() {
+     return const SizedBox(
+       height: 1.0,
+     );
+   }
+
   Widget _totalMl() {
     return Column(
       children: [
-        Text(
-          '0 ML',
-          style: Theme.of(context).textTheme.headlineSmall,
+        SizedBox(
+          height: 25,
+          child: Text(
+            '0 ML',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
         ),
         Text(
           'Faltan 2500 mL',
@@ -106,7 +133,7 @@ class _StartScreenState extends State<StartScreen> {
     return Column(
       children: [
         //_intervalBar(),
-        const IntervalProgressBar(),
+        const IntervalProgressBar(value:0,),
         Text(
           'Hidratación',
           style: Theme.of(context).textTheme.bodySmall,
@@ -125,15 +152,14 @@ class _StartScreenState extends State<StartScreen> {
   Center _buttonReg() {
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(
-          width: 120,
-          height: 30,
-        ),
-        child: ElevatedButton(
-          onPressed: () {},
-          child: const Text('Registrar'),
-        )
-      ),
+          constraints: const BoxConstraints.tightFor(
+            width: 120,
+            height: 30,
+          ),
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Registrar'),
+          )),
     );
   }
 }
