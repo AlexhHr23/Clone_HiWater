@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:water_counter_app/assets/interval_progress_bar.dart';
+import 'package:water_counter_app/screens/drinks_screen.dart';
 
 class StartScreen extends StatefulWidget {
-  const StartScreen({super.key,});
+  const StartScreen({
+    super.key,
+  });
 
   @override
   State<StartScreen> createState() => _StartScreenState();
@@ -29,10 +32,10 @@ class _StartScreenState extends State<StartScreen> {
           children: [
             _totalMl(),
             _verticalGap(),
-           _indicators(), 
-           _verticalGap(),
-           _buttonReg()
-           ],
+            _indicators(),
+            _verticalGap(),
+            _buttonReg()
+          ],
         ),
       ),
     );
@@ -46,11 +49,11 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 
-   Widget _verticalGap() {
-     return const SizedBox(
-       height: 1.0,
-     );
-   }
+  Widget _verticalGap() {
+    return const SizedBox(
+      height: 1.0,
+    );
+  }
 
   Widget _totalMl() {
     return Column(
@@ -133,7 +136,9 @@ class _StartScreenState extends State<StartScreen> {
     return Column(
       children: [
         //_intervalBar(),
-        const IntervalProgressBar(value:0,),
+        const IntervalProgressBar(
+          value: 0,
+        ),
         Text(
           'Hidratación',
           style: Theme.of(context).textTheme.bodySmall,
@@ -157,9 +162,16 @@ class _StartScreenState extends State<StartScreen> {
             height: 30,
           ),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DrinksScreen()));
+            },
             child: const Text('Registrar'),
           )),
     );
   }
+
+  
 }
