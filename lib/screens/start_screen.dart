@@ -42,11 +42,15 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   Widget _hour() {
-    String formattedTime = DateFormat.Hm().format(DateTime.now());
-    return Text(
-      formattedTime,
-      style: Theme.of(context).textTheme.bodySmall,
-    );
+    return StreamBuilder(
+      stream: Stream.periodic(const Duration(seconds: 1)),
+      builder: (context, snapshot) {
+        return Text(
+          DateFormat.Hm().format(DateTime.now()),
+          style: Theme.of(context).textTheme.bodySmall,
+          );
+      },
+    ); 
   }
 
   Widget _verticalGap() {
@@ -166,7 +170,7 @@ class _StartScreenState extends State<StartScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const DrinksScreen()));
+                      builder: (context) => DrinksScreen()));
             },
             child: const Text('Registrar'),
           )),
